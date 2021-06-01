@@ -16,7 +16,7 @@
 
 static LiquidCrystal_I2C lcd(0x27, 16, 4);
 static OneWire oneWire(ONE_WIRE_BUS);
-static DallasTemperature sensors(&oneWire);
+static DallasTemperature temp_sensor(&oneWire);
 static SoftwareSerial BTserial(10,11);
 static size_t measured_values;
 static int ph_values[NO_SAMPLES];
@@ -41,7 +41,7 @@ static const rgb_ph_t rgb_ph_values[15] = {
 	0, 0, 255,      //blue
 	0, 0, 139,      //dark blue
 	138, 43, 226,   //violet
-	139,0,139       //indigo
+	139, 0, 139       //indigo
 };
 
 
@@ -49,7 +49,7 @@ void setup() {
 	Serial.begin(9600);
 	BTserial.begin(9600);
 	lcd.begin();
-	sensors.begin();
+	temp_sensor.begin();
 	lcd.backlight();
 	setColorRGB(NIL, NIL, NIL);
 }
@@ -99,10 +99,10 @@ void loop() {
 			Serial.println(ph_val);
 			ph_val = (3.0 * ph_val - 877) / 59;
 			lcd.setCursor(NIL, NIL);
-			sensors.requestTemperatures();
+			temp_sensor.requestTemperatures();
 			lcd.print("Temperature: ");
-			lcd.print(sensors.getTempCByIndex(0));
-			BTserial.print(sensors.getTempCByIndex(0));
+			lcd.print(temp_sensor.getTempCByIndex(0));
+			BTserial.print(temp_sensor.getTempCByIndex(0));
 			BTserial.print(",");
 			lcd.setCursor(NIL, 2);
 			lcd.print("pH Value:");
