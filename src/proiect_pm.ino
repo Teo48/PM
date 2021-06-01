@@ -11,7 +11,7 @@
 #define GREEN_PIN               (6)
 #define BLUE_PIN                (5)
 #define DELAY_BETWEEN_PROBES    (20)
-#define LOOP_DELAY				(50)
+#define LOOP_DELAY		(50)
 #define NIL                     (0)
 
 static LiquidCrystal_I2C lcd(0x27, 16, 4);
@@ -130,8 +130,8 @@ void loop() {
 }
 
 static void setColorRGB(unsigned int red,
-						unsigned int green,
-						unsigned int blue) {
+			unsigned int green,
+			unsigned int blue) {
 	analogWrite(RED_PIN, red);
 	analogWrite(GREEN_PIN, green);
 	analogWrite(BLUE_PIN, blue);
