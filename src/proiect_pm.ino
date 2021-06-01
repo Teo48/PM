@@ -41,7 +41,7 @@ static const rgb_ph_t rgb_ph_values[15] = {
 	0, 0, 255,      //blue
 	0, 0, 139,      //dark blue
 	138, 43, 226,   //violet
-	139, 0, 139       //indigo
+	139, 0, 139     //indigo
 };
 
 
