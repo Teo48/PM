@@ -16,6 +16,9 @@
 #define RX			(10)
 #define TX			(11)
 #define BT_INPUT_MAX_LEN	(7)
+#define PH_MULTIPLIER           (3.f)
+#define OFFSET                  (877)
+#define PH_DIV                  (59)
 
 static LiquidCrystal_I2C lcd(0x27, 16, 4);
 static OneWire oneWire(ONE_WIRE_BUS);
@@ -101,7 +104,7 @@ void loop() {
 
 			float ph_val = (float) (measured_values / (NO_SAMPLES - 4));
 			Serial.println(ph_val);
-			ph_val = (3.0 * ph_val - 877) / 59;
+			ph_val = (PH_MULTIPLIER  * ph_val - OFFSET) / PH_DIV;
 			lcd.setCursor(NIL, NIL);
 			temp_sensor.requestTemperatures();
 			lcd.print("Temperature: ");
