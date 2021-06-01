@@ -13,11 +13,13 @@
 #define DELAY_BETWEEN_PROBES    (20)
 #define LOOP_DELAY		(50)
 #define NIL                     (0)
+#define RX			(10)
+#define TX			(11)
 
 static LiquidCrystal_I2C lcd(0x27, 16, 4);
 static OneWire oneWire(ONE_WIRE_BUS);
 static DallasTemperature temp_sensor(&oneWire);
-static SoftwareSerial BTserial(10,11);
+static SoftwareSerial BTserial(RX, TX);
 static size_t measured_values;
 static int ph_values[NO_SAMPLES];
 
