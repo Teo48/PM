@@ -83,10 +83,10 @@ void loop() {
 			}
 
 			qsort(ph_values,
-				sizeof(ph_values) / sizeof(*ph_values),
-				sizeof(*ph_values),
-				[](const int a, const int b) {
-				return a > b;
+			      sizeof(ph_values) / sizeof(*ph_values),
+			      sizeof(*ph_values),
+			      [](const int a, const int b) {
+			      return a > b;
 			});
 
 			measured_values = 0;
