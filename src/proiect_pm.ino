@@ -68,9 +68,8 @@ void loop() {
 			lcd.print("Loading...");
 			int cnt = 0;
 			char c = '\0';
-			while (c != '!' || cnt && BT_INPUT_MAX_LEN) {
+			while (c != '!' && cnt < BT_INPUT_MAX_LEN) {
 				c = BTserial.read();
-				Serial.println(c);
 				bt_input[cnt++] = c;
 			}
 
