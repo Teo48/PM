@@ -15,6 +15,7 @@
 #define NIL                     (0)
 #define RX			(10)
 #define TX			(11)
+#define BT_INPUT_MAX_LEN	(7)
 
 static LiquidCrystal_I2C lcd(0x27, 16, 4);
 static OneWire oneWire(ONE_WIRE_BUS);
@@ -58,7 +59,7 @@ void setup() {
 
 static volatile bool start_measurement;
 static volatile bool end_measurement;
-static char bt_input[7];
+static char bt_input[BT_INPUT_MAX_LEN];
 
 void loop() {
 	if (end_measurement == false) {
@@ -66,7 +67,7 @@ void loop() {
 			lcd.print("Loading...");
 			int cnt = 0;
 			char c = '\0';
-			while (c != '!') {
+			while (c != '!' || cnt < BT_INPUT_MAX_LEN) {
 				c = BTserial.read();
 				Serial.println(c);
 				bt_input[cnt++] = c;
