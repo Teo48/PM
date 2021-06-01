@@ -64,10 +64,11 @@ static char bt_input[BT_INPUT_MAX_LEN];
 void loop() {
 	if (end_measurement == false) {
 		if (start_measurement == false) {
+			lcd.setCursor(NIL, NIL);
 			lcd.print("Loading...");
 			int cnt = 0;
 			char c = '\0';
-			while (c != '!' || cnt < BT_INPUT_MAX_LEN) {
+			while (c != '!' || cnt && BT_INPUT_MAX_LEN) {
 				c = BTserial.read();
 				Serial.println(c);
 				bt_input[cnt++] = c;
@@ -75,8 +76,9 @@ void loop() {
 
 			if (strncmp(bt_input, "start", 5) == 0) {
 				start_measurement = true;
-				memset(bt_input, 0, sizeof(bt_input));
 			}
+
+			memset(bt_input, 0, sizeof(bt_input));
 		}
 
 		if (start_measurement == true) {
